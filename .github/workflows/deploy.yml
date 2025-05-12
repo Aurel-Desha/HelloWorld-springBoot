@@ -1,0 +1,28 @@
+name: Déploiement CI/CD vers EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v3
+
+      - name: Préparation de la clé SSH
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > private_key
+          chmod 600 private_key
+
+      - name: Déploiement sur EC2
+        run: |
+          ssh -i private_key -o StrictHostKeyChecking=no ubuntu@13.37.228.147 "
+            cd ~/yourmedia-app &&
+            git pull origin main &&
+            ./mvnw clean package &&
+            sudo systemctl restart mon-app
+          "
