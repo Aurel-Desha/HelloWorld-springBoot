@@ -26,7 +26,8 @@ jobs:
             sudo apt update &&
             sudo apt install -y maven &&
             mvn clean package &&
-            sudo systemctl daemon-reload
-            sudo systemctl enable yourmedia
-            sudo systemctl start yourmedia
+            sudo cp target/*.war /opt/tomcat/webapps/ &&
+            sudo systemctl daemon-reload &&
+            sudo systemctl enable yourmedia &&
+            sudo systemctl start yourmedia &&
           "
