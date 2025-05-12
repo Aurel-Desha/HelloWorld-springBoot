@@ -13,7 +13,7 @@ public class HelloWorldApplication {
         SpringApplication.run(HelloWorldApplication.class, args);
     }
 
-    @RequestMapping
+    @RequestMapping("/")
     public String helloWorld() {
         return "Hello World, We are YourMedia";
     }
