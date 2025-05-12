@@ -23,6 +23,6 @@ jobs:
           ssh -i private_key -o StrictHostKeyChecking=no ubuntu@13.37.228.147 "
             cd ~/yourmedia-app &&
             git pull origin main &&
-            ./mvnw clean package &&
+            mvn clean package &&
             sudo systemctl restart mon-app
           "
