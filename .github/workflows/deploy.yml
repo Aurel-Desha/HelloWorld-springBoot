@@ -21,13 +21,13 @@ jobs:
       - name: Déploiement sur EC2
         run: |
           ssh -i private_key -o StrictHostKeyChecking=no ubuntu@13.37.228.147 "
-            cd ~/yourmedia-app &&
+            cd /home/ubuntu/yourmedia-app/ &&
             git pull origin main &&
             sudo apt update &&
             sudo apt install -y maven &&
             mvn clean package &&
-            sudo cp target/*.war /opt/tomcat/webapps/ &&
+            sudo cp /home/ubuntu/yourmedia-app/target/*.war /opt/tomcat/webapps/ &&
             sudo systemctl daemon-reload &&
             sudo systemctl enable yourmedia &&
-            sudo systemctl start yourmedia &&
+            sudo systemctl start yourmedia
           "
