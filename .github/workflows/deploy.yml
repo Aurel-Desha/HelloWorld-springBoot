@@ -23,6 +23,8 @@ jobs:
           ssh -i private_key -o StrictHostKeyChecking=no ubuntu@13.37.228.147 "
             cd ~/yourmedia-app &&
             git pull origin main &&
+            sudo apt update &&
+            sudo apt install -y maven &&
             mvn clean package &&
             sudo systemctl restart yourmedia
           "
